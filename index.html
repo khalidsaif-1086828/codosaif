@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="Abu Dhabi University mechatronics project: a falcon-inspired soft robotic claw.">
+  <title>Falcon-Inspired Robotic Claw | CodoSaif</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172b4d;
+      --muted: #526579;
+      --paper: #fff;
+      --wash: #f3f7fb;
+      --line: #dce5ee;
+      --blue: #1769aa;
+      --teal: #087e8b;
+      --shadow: 0 12px 32px rgb(16 42 67 / 8%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+    body {
+      margin: 0;
+      background: var(--wash);
+      color: var(--ink);
+      font: 16px/1.7 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); }
+    a:hover { color: var(--teal); }
+    .hero {
+      padding: clamp(3rem, 8vw, 6.5rem) 1.25rem;
+      background: radial-gradient(ellipse at 85% 20%, #216f82 0, transparent 38%), linear-gradient(135deg, #102a43, #174a68);
+      color: white;
+    }
+    .hero-inner, main, footer { width: min(1050px, calc(100% - 2rem)); margin-inline: auto; }
+    .eyebrow { margin: 0 0 .75rem; color: #b6e3e7; font-size: .82rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { max-width: 800px; margin: 0; font-size: clamp(2.25rem, 6vw, 4.5rem); line-height: 1.08; letter-spacing: -.04em; }
+    .subtitle { max-width: 680px; margin: 1rem 0 1.5rem; color: #e2edf4; font-size: clamp(1.05rem, 2.5vw, 1.3rem); }
+    .badges { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .badge { padding: .35rem .7rem; border: 1px solid #ffffff55; border-radius: 999px; color: #f4fbff; font-size: .88rem; }
+    main { padding-block: 2rem 4rem; }
+    .layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+    nav, article, .card { border: 1px solid var(--line); border-radius: 16px; background: var(--paper); box-shadow: var(--shadow); }
+    nav { position: sticky; top: 1rem; padding: 1.1rem; }
+    nav strong { display: block; margin: 0 0 .55rem; }
+    nav ul { max-height: 70vh; margin: 0; padding: 0; overflow: auto; list-style: none; }
+    nav li + li { border-top: 1px solid #edf1f5; }
+    nav a { display: block; padding: .4rem 0; color: var(--muted); font-size: .9rem; text-decoration: none; }
+    nav a:hover { color: var(--blue); }
+    article { min-width: 0; padding: clamp(1.25rem, 4vw, 2.5rem); }
+    section { padding-bottom: 1.5rem; }
+    section + section { padding-top: 1.4rem; border-top: 1px solid var(--line); }
+    h2 { margin: 0 0 .8rem; font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.25; }
+    h3 { margin: 1.4rem 0 .5rem; font-size: 1.12rem; }
+    p { margin: .55rem 0; }
+    li { padding-left: .15rem; }
+    ul, ol { padding-left: 1.35rem; }
+    table { width: 100%; margin: 1rem 0; border-collapse: collapse; text-align: left; }
+    th, td { padding: .65rem .75rem; border: 1px solid var(--line); vertical-align: top; }
+    th { background: #edf5fa; }
+    .table-wrap { overflow-x: auto; }
+    .callout { margin: 1rem 0; padding: 1rem 1.1rem; border-left: 4px solid var(--teal); border-radius: 6px; background: #edf8f8; }
+    .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+    .card { padding: 1rem; box-shadow: none; }
+    .card h3 { margin-top: 0; }
+    footer { padding: 0 0 2rem; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; }
+      nav { position: static; }
+      nav ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 0 .75rem; max-height: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Abu Dhabi University · College of Engineering</p>
+      <h1>Falcon-Inspired Robotic Claw</h1>
+      <p class="subtitle">A soft, bio-inspired gripper designed around the curved grasp of falcon talons.</p>
+      <div class="badges">
+        <span class="badge">MEC 482 — Introduction to Mechatronics</span>
+        <span class="badge">Mechatronics Mega Project</span>
+        <span class="badge">Initial research and design stage</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <nav aria-label="Page contents">
+        <strong>On this page</strong>
+        <ul>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#overview">Project overview</a></li>
+          <li><a href="#objectives">Objectives</a></li>
+          <li><a href="#inspiration">Nature inspiration</a></li>
+          <li><a href="#research">Design research</a></li>
+          <li><a href="#components">Components</a></li>
+          <li><a href="#principle">Working principle</a></li>
+          <li><a href="#mechanical">Mechanical design</a></li>
+          <li><a href="#control">Arduino control</a></li>
+          <li><a href="#applications">Applications</a></li>
+          <li><a href="#progress">Project progress</a></li>
+          <li><a href="#next-steps">Next steps</a></li>
+          <li><a href="#results">Expected results</a></li>
+          <li><a href="#references">References</a></li>
+        </ul>
+      </nav>
+
+      <article>
+        <section id="team">
+          <h2>Team</h2>
+          <div class="table-wrap"><table>
+            <thead><tr><th scope="col">Name</th><th scope="col">University ID</th></tr></thead>
+            <tbody>
+              <tr><td>Khaled Alhameli</td><td>1086828</td></tr>
+              <tr><td>Saad Shahid</td><td>1089255</td></tr>
+              <tr><td>Saad Mulla</td><td>1085412</td></tr>
+              <tr><td>Sazzad Hosain Sayeed</td><td>1093153</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>Institution:</strong> Abu Dhabi University, United Arab Emirates</p>
+        </section>
+
+        <section id="overview">
+          <h2>1. Project Overview</h2>
+          <p>Our project aims to design and develop a robotic claw inspired by the natural gripping mechanism of a falcon. Falcons have strong, curved talons that catch and hold objects securely. We are studying this natural mechanism and applying similar ideas to a robotic system.</p>
+          <p>The claw will use soft fingers, electronic sensors, and an Arduino microcontroller. Our main goal is to grip different objects while controlling the gripping force. We are currently researching mechanisms and selecting a suitable design.</p>
+        </section>
+
+        <section id="objectives">
+          <h2>2. Project Objectives</h2>
+          <ol>
+            <li>Design a robotic claw inspired by falcon talons.</li>
+            <li>Develop soft fingers that bend in a curved shape.</li>
+            <li>Use Arduino to control the opening and closing of the claw.</li>
+            <li>Use air pressure to bend the fingers and grip objects.</li>
+            <li>Integrate a force sensor to measure gripping force.</li>
+            <li>Design parts and molds in AutoCAD and manufacture them using 3D printing.</li>
+            <li>Test gripping performance with different objects.</li>
+          </ol>
+        </section>
+
+        <section id="inspiration">
+          <h2>3. Inspiration From Nature</h2>
+          <p>Falcons have powerful claws that help them capture and hold prey. Their talons have a curved shape for effective gripping, strong gripping ability, flexible finger movement, natural tendon-based movement, and the ability to hold objects securely. We want to apply some of these characteristics to our robotic claw.</p>
+        </section>
+
+        <section id="research">
+          <h2>4. Initial Design Research</h2>
+          <p>We compared designs with jointed fingers and single curved fingers to find a mechanism that is practical to manufacture and control.</p>
+          <h3>Concept 1: Tendon-driven robotic gripper</h3>
+          <p>A motor pulls a tendon wire, causing the finger joints to bend and grip an object. This is interesting because it resembles natural tendon movement.</p>
+          <p><strong>Main components:</strong> motor, pulley, tendon wire, finger joints, rigid links, and base structure.</p>
+          <p><a href="https://doi.org/10.1177/0278364920907697" target="_blank" rel="noopener noreferrer">Research reference: tendon-driven robotic gripper</a></p>
+          <h3>Concept 2: Bio-inspired claw mechanism</h3>
+          <p>This design uses curved claw structures inspired by animal gripping mechanisms and provides ideas for the shape and movement of our claw.</p>
+          <p><a href="https://www.preprints.org/manuscript/202508.0109" target="_blank" rel="noopener noreferrer">Research reference: bio-inspired claw mechanism</a></p>
+          <h3>Concept 3: Soft fiber-reinforced fingers (selected design)</h3>
+          <p>We selected the <strong>Fiber-Reinforced Bending Actuator</strong> from the Soft Robotics Toolkit. Each finger is a soft silicone tube (bladder) wrapped with strong, non-stretch thread. One side also has a flat, non-stretch layer.</p>
+          <p><strong>How it works:</strong></p>
+          <ul>
+            <li>When air is pumped into the finger, the silicone tries to expand.</li>
+            <li>The thread limits outward expansion so the finger can lengthen.</li>
+            <li>The flat layer prevents one side from lengthening.</li>
+            <li>The other side lengthens, making the finger bend inward around an object.</li>
+            <li>When air is released, the silicone returns toward its original straight shape.</li>
+          </ul>
+          <p><strong>Why we chose it:</strong> its curved motion resembles a talon closing around prey; soft silicone can adapt to objects; the fingers return without springs; and the molds can be designed in AutoCAD and 3D printed. Thread placement can also change the motion (bending, extending, or twisting).</p>
+          <div class="callout"><strong>Manufacturing challenge:</strong> this finger takes longer to make than other soft fingers. Casting can take up to five days, so fabrication needs to be planned early.</div>
+          <p><a href="https://softroboticstoolkit.com/book/fiber-reinforced-bending-actuators" target="_blank" rel="noopener noreferrer">Soft Robotics Toolkit: Fiber-reinforced bending actuators</a></p>
+        </section>
+
+        <section id="components">
+          <h2>5. Proposed Components</h2>
+          <div class="table-wrap"><table>
+            <thead><tr><th scope="col">Component</th><th scope="col">Function</th></tr></thead>
+            <tbody>
+              <tr><td>Arduino Uno</td><td>Controls the robotic claw</td></tr>
+              <tr><td>Silicone rubber</td><td>Forms the soft fingers</td></tr>
+              <tr><td>Inextensible thread</td><td>Wraps the fingers so they bend instead of expanding</td></tr>
+              <tr><td>Inextensible flat layer (fabric or paper)</td><td>Makes one side stiff so the finger bends</td></tr>
+              <tr><td>3D-printed molds</td><td>Used to cast the silicone fingers</td></tr>
+              <tr><td>3D-printed base</td><td>Holds the fingers and electronic parts</td></tr>
+              <tr><td>Air pump</td><td>Supplies air to the fingers</td></tr>
+              <tr><td>Solenoid valves</td><td>Let air into the fingers and release it</td></tr>
+              <tr><td>Air tubes and connectors</td><td>Carry air from the pump to the fingers</td></tr>
+              <tr><td>Pressure sensor</td><td>Measures air pressure inside the fingers</td></tr>
+              <tr><td>Force sensor</td><td>Measures gripping force</td></tr>
+              <tr><td>Relay / MOSFET driver</td><td>Lets the Arduino switch the pump and valves</td></tr>
+              <tr><td>Power supply and connecting wires</td><td>Provide power and electrical connections</td></tr>
+            </tbody>
+          </table></div>
+          <p>The final components may change depending on design and testing results.</p>
+        </section>
+
+        <section id="principle">
+          <h2>6. Proposed Working Principle</h2>
+          <ol>
+            <li>Arduino turns on the air pump and opens the inlet solenoid valve.</li>
+            <li>Air flows through the tubes into the soft fingers.</li>
+            <li>The thread wrapping and stiff layer make the fingers bend inward.</li>
+            <li>The claw closes around an object.</li>
+            <li>The force sensor measures gripping force, and the pressure sensor measures air pressure.</li>
+            <li>When the required gripping force is reached, Arduino closes the valve and stops adding air.</li>
+            <li>To release the object, Arduino opens the exhaust valve; air leaves the fingers and they return toward their straight shape.</li>
+          </ol>
+          <p>This proposed mechanism will be evaluated during the design stage.</p>
+        </section>
+
+        <section id="mechanical">
+          <h2>7. Mechanical Design</h2>
+          <p>We plan to design the robotic claw using AutoCAD. The design will include a supporting base, soft-finger molds, finger mounting points, air-tube routing, pump and valve mounting locations, and a force-sensor mounting position. The base and molds are planned for 3D printing.</p>
+          <h3>Finger manufacturing steps</h3>
+          <ol>
+            <li>Design the finger molds in AutoCAD and export them as STL files.</li>
+            <li>3D-print the mold pieces.</li>
+            <li>Cast the first silicone layer and add the flat inextensible layer on one side.</li>
+            <li>Wrap the thread around the finger.</li>
+            <li>Cast an outer silicone layer to cover and hold the thread.</li>
+            <li>Seal the end caps and connect the air tube.</li>
+            <li>Test the finger for leaks and bending.</li>
+          </ol>
+        </section>
+
+        <section id="control">
+          <h2>8. Arduino Control System</h2>
+          <p>Arduino will be the main controller. It will turn the air pump on and off, open and close the solenoid valves, control the claw, read the pressure and force sensors, monitor gripping force, and help prevent excessive gripping force and pressure. The program will be developed after the final electronic components are selected.</p>
+        </section>
+
+        <section id="applications">
+          <h2>9. Expected Applications</h2>
+          <ul>
+            <li>Robotic gripping systems</li>
+            <li>Handling small and fragile objects</li>
+            <li>Educational robotics</li>
+            <li>Bio-inspired robotic research</li>
+            <li>Automated pick-and-place applications</li>
+          </ul>
+          <p>These are potential applications to explore as the project develops.</p>
+        </section>
+
+        <section id="progress">
+          <h2>10. Current Project Progress</h2>
+          <div class="status-grid">
+            <div class="card"><h3>Completed</h3><ul><li>Selected the initial project idea and falcon-claw inspiration.</li><li>Researched existing robotic claw designs.</li><li>Selected the soft fiber-reinforced finger design.</li><li>Identified possible components and developed an initial working concept.</li></ul></div>
+            <div class="card"><h3>In progress</h3><ul><li>Planning the mechanical structure.</li><li>Researching air pumps, solenoid valves, pressure sensors, and force sensors.</li></ul></div>
+            <div class="card"><h3>Not started yet</h3><ul><li>Final AutoCAD design and 3D printing.</li><li>Casting silicone fingers and Arduino programming.</li><li>Physical assembly, experimental testing, and final performance evaluation.</li></ul></div>
+          </div>
+        </section>
+
+        <section id="next-steps">
+          <h2>11. Next Steps</h2>
+          <ol>
+            <li>Design the finger molds and base in AutoCAD.</li>
+            <li>Determine the required gripping force.</li>
+            <li>Select a suitable air pump and solenoid valves.</li>
+            <li>Choose the pressure and force sensors.</li>
+            <li>3D-print the molds and cast the fingers.</li>
+            <li>Develop the Arduino control system.</li>
+            <li>Assemble the prototype.</li>
+            <li>Test gripping performance.</li>
+          </ol>
+        </section>
+
+        <section id="results">
+          <h2>12. Expected Results</h2>
+          <p>At the end of the project, we aim to develop a functional robotic claw capable of opening, closing, and gripping objects. We also aim to measure gripping force with a sensor and control the claw using Arduino. Final performance will depend on the finger design, air pressure, and experimental results.</p>
+        </section>
+
+        <section id="references">
+          <h2>13. References</h2>
+          <ol>
+            <li>Tendon-driven robotic gripper design research — <a href="https://doi.org/10.1177/0278364920907697" target="_blank" rel="noopener noreferrer">DOI: 10.1177/0278364920907697</a></li>
+            <li>Bio-inspired claw mechanism research — <a href="https://www.preprints.org/manuscript/202508.0109" target="_blank" rel="noopener noreferrer">Preprints manuscript 202508.0109</a></li>
+            <li>Soft Robotics Toolkit, fiber-reinforced soft bending actuators — <a href="https://softroboticstoolkit.com/book/fiber-reinforced-bending-actuators" target="_blank" rel="noopener noreferrer">View resource</a></li>
+          </ol>
+        </section>
+      </article>
+    </div>
+  </main>
+  <footer><p>Falcon-Inspired Robotic Claw · Abu Dhabi University · MEC 482</p></footer>
+</body>
+</html>
